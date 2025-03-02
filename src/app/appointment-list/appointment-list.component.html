@@ -45,7 +45,6 @@
                         <table class="table table-hover mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Actions</th>
@@ -53,7 +52,6 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let appointment of appointments; index as i">
-                                    <td>{{appointment.id}}</td>
                                     <td>{{appointment.title}}</td>
                                     <td>{{appointment.date | date:'dd.MM.yyyy'}}</td>
                                     <td>
