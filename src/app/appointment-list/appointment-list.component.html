@@ -1,12 +1,78 @@
-<div>
-    <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment Description">
-    <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment Date">
-    <button (click)="addAppointement()">Add</button>
-</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Appointment Manager</h4>
+                </div>
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="appointmentTitle"
+                                    [(ngModel)]="newAppointmentTitle" placeholder="Appointment Description"
+                                    name="title">
+                                <label for="appointmentTitle">Appointment Description</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="appointmentDate"
+                                    [(ngModel)]="newAppointmentDate" placeholder="Appointment Date" name="date">
+                                <label for="appointmentDate">Appointment Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <button class="btn btn-primary w-100" (click)="addAppointement()">
+                                <i class="bi bi-plus-circle me-2"></i>Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<ul>
-    <li *ngFor="let appointment of appointments; index as i">
-        {{appointment.id}}{{appointment.title}}{{appointment.date | date:'dd.MM.yyyy'}}
-        <button (click)="deleteAppointment(i)">Delete</button>
-    </li>
-</ul>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">My Appointments</h4>
+                    <span class="badge bg-light text-primary">{{appointments.length || 0}} items</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let appointment of appointments; index as i">
+                                    <td>{{appointment.id}}</td>
+                                    <td>{{appointment.title}}</td>
+                                    <td>{{appointment.date | date:'dd.MM.yyyy'}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger" (click)="deleteAppointment(i)">
+                                            <i class="bi bi-trash me-1"></i>Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="appointments.length === 0">
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        <i class="bi bi-calendar-x fs-4 d-block mb-2"></i>
+                                        No appointments found. Add your first one above.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
