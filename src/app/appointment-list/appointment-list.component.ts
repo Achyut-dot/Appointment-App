@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppointmentListComponent {
 
+  appointment: string = "Hello, My name is Achyut Raghuvanshi"
+
 }
